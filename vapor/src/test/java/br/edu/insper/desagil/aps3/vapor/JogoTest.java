@@ -3,7 +3,7 @@ package br.edu.insper.desagil.aps3.vapor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JogoTest {
 
@@ -23,6 +23,33 @@ public class JogoTest {
     }
 
     @Test
-    voi
+    void avaliaUmaVez(){
+        jogo.avalia("Bom_de_Guerra", 3);
+        assertEquals(3.0,jogo.media(),DELTA);
+        assertTrue(jogo.avaliado("Bom_de_Guerra"));
+        assertFalse(jogo.avaliado("Rei_barbaro"));
+    }
+
+    @Test
+    void avaliaDuasVezes(){
+        jogo.avalia("Bom_de_Guerra", 3);
+        jogo.avalia("Rei_barbaro",4);
+        assertEquals(3.5,jogo.media(),DELTA);
+        assertTrue(jogo.avaliado("Bom_de_Guerra"));
+        assertTrue(jogo.avaliado("Rei_barbaro"));
+    }
+
+    @Test
+    void avaliaTresVezes(){
+        jogo.avalia("Bom_de_Guerra", 3);
+        jogo.avalia("Rei_barbaro",4);
+        jogo.avalia("Bom_de_Guerra", 5);
+        assertEquals(4.5,jogo.media(),DELTA);
+    }
+
+
+
+
+
 
 }
