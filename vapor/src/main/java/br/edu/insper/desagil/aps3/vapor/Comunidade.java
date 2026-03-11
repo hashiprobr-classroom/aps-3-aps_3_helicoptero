@@ -11,14 +11,14 @@ public class Comunidade {
         this.membros = membros;
     }
 
-    public void adicionaMembro (Usuario usuario){
+
+    public void adicionaMembro (Usuario usuario) {
         membros.add(usuario);
     }
 
+    public List<String> apelidosMembros() {
 
-    public List<String> apelidosMembros(){
-
-        List <String> listaApelidos = new ArrayList<>();
+        List<String> listaApelidos = new ArrayList<>();
         for (Usuario usuario : membros){
             listaApelidos.add(usuario.getApelido());
         }

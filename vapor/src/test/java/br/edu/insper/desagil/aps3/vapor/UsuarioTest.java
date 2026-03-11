@@ -13,10 +13,14 @@ public class UsuarioTest {
         usuario = new Usuario("Bom_de_guerra", "Cleiton");
     }
 
-
     @Test
     void constroi(){
-        assertEquals("Bom_de_guerra",usuario.getApelido());
-        assertEquals("Cleiton",usuario.getNome());
+        assertEquals("Bom_de_guerra", usuario.getApelido());
+        assertEquals("Cleiton", usuario.getNome());
+    }
+
+    void mudaNome() {
+        usuario.setNome("Cleitinho");
+        assertEquals("Cleitinho", usuario.getNome());
     }
 }

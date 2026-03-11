@@ -4,28 +4,27 @@ import java.util.List;
 
 public class Loja {
 
-    private Usuario usuario;
+    private Usuario dono;
     private List<Jogo> jogos;
 
-    public Loja(List<Jogo> jogos, Usuario usuario) {
+    public Loja(List<Jogo> jogos, Usuario dono) {
         this.jogos = jogos;
-        this.usuario = usuario;
+        this.dono = dono;
     }
 
     public Usuario getUsuario() {
-        return usuario;
+        return dono;
     }
 
-    public Integer numeroAvaliados(Usuario usuario){
-        int numero = 0;
+    public Integer numeroAvaliados(Usuario usuario) {
+        int num_jogos = 0;
         String apelido = usuario.getApelido();
-        for (Jogo jogo : jogos){
-            if (jogo.avaliado(apelido)){
-                numero ++;
+        for (Jogo jogo : jogos) {
+            if (jogo.avaliado(apelido)) {
+                num_jogos++;
             }
-
         }
-        return numero;
+        return num_jogos;
     }
 
 

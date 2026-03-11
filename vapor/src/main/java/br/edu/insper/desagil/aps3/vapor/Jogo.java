@@ -15,40 +15,31 @@ public class Jogo {
         this.avaliacoes = new HashMap<>();
     }
 
+    // Getters
     public int getId() {
         return id;
     }
-
     public String getNome() {
         return nome;
     }
 
-    public void avalia(String apelido,int avaliacao){
+    public void avalia(String apelido,int avaliacao) {
         avaliacoes.put(apelido,avaliacao);
     }
 
-    public boolean avaliado(String apelido){
-        if (avaliacoes.containsKey(apelido)){
-            return true;
-        }
-        else{
-            return false;
-        }
+    public boolean avaliado(String apelido) {
+        return avaliacoes.containsKey(apelido);
     }
 
-    public double media(){
+    public double media() {
         double resultado = 0.0;
-        int i = 0;
-        if (!avaliacoes.isEmpty()){
+        if (!avaliacoes.isEmpty()) {
             for (int avaliacao : avaliacoes.values()){
                 resultado += avaliacao;
-                i ++;
             }
-            return resultado/i;
-        }
-        else{
+            return resultado/avaliacoes.size();
+        } else {
             return 0.0;
         }
     }
-
 }

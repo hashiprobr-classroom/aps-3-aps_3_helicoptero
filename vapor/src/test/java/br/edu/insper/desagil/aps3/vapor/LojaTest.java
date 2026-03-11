@@ -9,68 +9,63 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LojaTest {
-    Loja loja;
-    Usuario usuario;
-    List<Jogo> jogos;
+
+    private Loja loja;
+    private Usuario dono;
+    private Usuario usuario1;
+    private Jogo jogo1;
+    private Jogo jogo2;
+    private Jogo jogo3;
 
     @BeforeEach
-    void setUp(){
-        usuario = new Usuario("Bom_de_guerra","Cleiton");
-        jogos = new ArrayList<>();
-        loja = new Loja(jogos,usuario);
-    }
+    void setUp() {
+        dono = new Usuario("teto","Cletiton");
+        usuario1 = new Usuario("tue","Matheus");
 
-    @Test
-    void constroi(){
-        assertEquals(usuario,loja.getUsuario());
-        assertEquals(0,loja.numeroAvaliados(usuario));
-    }
+        jogo1 = new Jogo(1, "Mario");
+        jogo2 = new Jogo(2, "Doom");
+        jogo3 = new Jogo(3, "Pac-Man");
 
-    @Test
-    void umUsuarioAvaliaUmJogo(){
-        Jogo jogo1 = new Jogo(1,"Overwatch 3");
-        jogos.add(jogo1);
-        jogo1.avalia("Bom_de_guerra",10);
-        assertEquals(1,loja.numeroAvaliados(usuario));
-    }
-
-    @Test
-    void umUsuarioAvaliaDoisJogos(){
-        Jogo jogo1 = new Jogo(1,"Overwatch 3");
-        Jogo jogo2 = new Jogo(2,"Overwatch 4");
-
+        List<Jogo> jogos = new ArrayList<>();
         jogos.add(jogo1);
         jogos.add(jogo2);
+        jogos.add(jogo3);
 
-        jogo1.avalia("Bom_de_guerra",10);
-        jogo2.avalia("Bom_de_guerra",10);
-        assertEquals(2,loja.numeroAvaliados(usuario));
-
+        loja = new Loja(jogos, dono);
     }
 
     @Test
-    void doisUsuariosAvaliamUmJogo(){
-        Usuario usuario2 = new Usuario("Rei_Barbaro","Bob");
-        Jogo jogo1 = new Jogo(1,"Overwatch 3");
-        jogos.add(jogo1);
-        jogo1.avalia("Bom_de_guerra",10);
-        jogo1.avalia("Rei_Barbaro",9);
-        assertEquals(1,loja.numeroAvaliados(usuario));
-        assertEquals(1,loja.numeroAvaliados(usuario2));
+    void constroi() {
+        assertEquals(dono, loja.getUsuario());
+        assertEquals(0, loja.numeroAvaliados(dono));
     }
 
     @Test
-    void doisUsuariosAvaliamDoisJogos(){
-        Usuario usuario2 = new Usuario("Rei_Barbaro","Bob");
-        Jogo jogo1 = new Jogo(1,"Overwatch 3");
-        Jogo jogo2 = new Jogo(2,"Overwatch 4");
-        jogos.add(jogo1);
-        jogos.add(jogo2);
-        jogo1.avalia("Bom_de_guerra",10);
-        jogo2.avalia("Rei_Barbaro",9);
-        assertEquals(1,loja.numeroAvaliados(usuario));
-        assertEquals(1,loja.numeroAvaliados(usuario2));
+    void umUsuarioAvaliaUmJogo() {
+        jogo1.avalia(dono.getApelido(),5);
+        assertEquals(1, loja.numeroAvaliados(dono));
     }
 
+    @Test
+    void umUsuarioAvaliaDoisJogos() {
+        jogo1.avalia(dono.getApelido(),3);
+        jogo2.avalia(dono.getApelido(),4);
+        assertEquals(2,loja.numeroAvaliados(dono));
+    }
 
+    @Test
+    void doisUsuariosAvaliamUmJogo() {
+        jogo1.avalia(dono.getApelido(),2);
+        jogo1.avalia(usuario1.getApelido(),3);
+        assertEquals(1,loja.numeroAvaliados(dono));
+        assertEquals(1,loja.numeroAvaliados(usuario1));
+    }
+
+    @Test
+    void doisUsuariosAvaliamDoisJogos() {
+        jogo1.avalia(dono.getApelido(),5);
+        jogo2.avalia(usuario1.getApelido(),4);
+        assertEquals(1,loja.numeroAvaliados(dono));
+        assertEquals(1,loja.numeroAvaliados(usuario1));
+    }
 }

@@ -12,11 +12,9 @@ public class ComunidadeDeJogo extends Comunidade{
 
 
     @Override
-    public void adicionaMembro (Usuario usuario){
-        if (jogo.avaliado(usuario.getApelido())){
+    public void adicionaMembro (Usuario usuario) {
+        if (jogo.avaliado(usuario.getApelido())) {
             super.adicionaMembro(usuario);
         }
     }
-
-
 }
